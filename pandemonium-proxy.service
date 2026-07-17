@@ -1,0 +1,20 @@
+[Unit]
+Description=Pandemonium authenticated egress proxy
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pandemonium-proxy
+Group=pandemonium-proxy
+EnvironmentFile=/etc/pandemonium-proxy.env
+ExecStart=/usr/local/bin/pandemonium-proxy
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target
